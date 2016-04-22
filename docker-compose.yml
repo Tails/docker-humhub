@@ -1,0 +1,18 @@
+server:
+  build: ./server
+  links:
+    - "database:mysql"
+  ports:
+    - "8080:80"
+  # volumes:
+  #   - ./server/log:/var/log
+
+database:
+  image: mysql
+  volumes:
+    - ./database/data:/var/lib/mysql
+  environment:
+    - MYSQL_ROOT_PASSWORD=operationthunderinghammer
+    - MYSQL_DATABASE=humhub
+    - MYSQL_USER=humhub
+    - MYSQL_PASSWORD=skfvbskbfiuryf943y9ytughushiuwg792

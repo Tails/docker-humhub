@@ -1,0 +1,2 @@
+*/5 * * * * su -c "/var/www/html/protected/yii  cron/hourly" www-data    >/dev/null 2>&1
+0 18 * * * su -c "/var/www/html/protected/yii  cron/daily" www-data >/dev/null 2>&1

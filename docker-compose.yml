@@ -4,9 +4,7 @@ server:
     - "database:mysql"
   ports:
     - "8080:80"
-  # volumes:
-  #   - ./server/log:/var/log
-
+  
 database:
   image: mysql
   volumes:

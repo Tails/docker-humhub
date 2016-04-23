@@ -10,9 +10,15 @@ RUN apt-get update && apt-get install -y \
   php5-cli \
   php5-intl \
   php5-ldap \
+  php5-imagick \
   libldap2-dev \
   libcurl3-gnutls \
   libpng-dev \
+  libjpeg-dev \
+  libfreetype6-dev \
+  libmagickwand-dev \
+  libjpeg62-turbo-dev \
+  libpng12-dev \
   libicu-dev \
   php-apc \
   php5-memcached \
@@ -41,8 +47,11 @@ RUN (cd /usr/src && \
 # this is needed so that composer can authenticate against github
 RUN composer config --global github-oauth.github.com 6e519571199f67a7c4dd04110ef7c21191ecd5b0
 
+# ldap & GD
 RUN docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ && \
-    docker-php-ext-install ldap
+    docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && \
+    docker-php-ext-install ldap && \
+    docker-php-ext-install -j$(nproc) gd
 
 # install dependencies
 RUN (cd /var/www/html && \
